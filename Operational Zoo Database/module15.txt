@@ -1,0 +1,135 @@
+
+Create two (2) views
+
+CREATE VIEW supervisors AS
+SELECT first_name, last_name 
+FROM employee
+WHERE employee.supervisor=1;
+
+	I chose to create this view because in my database all the employees are grouped together. This view gives an administrator the chance to see employees that are specifically supervisors. 
+Of course, it's important to know who your supervisors are! 
+
+CREATE VIEW top_employees AS
+SELECT first_name, last_name, wlevel_id
+FROM employee
+WHERE wlevel_id > 2 AND employee.supervisor=0;
+
+	The top_employees view is a very interesting one to me. It shows all the "top employees" that are not supervisors by classifying a top employee as a non-supervisor employee whose pay level is greater than 2
+This view is useful because when it comes time for promotions an administrator will want to be able to see what the pool of possible promotees look like. This view makes it easy 
+to quickly create a short list of candidates from within the company. 
+
+Create one (1) trigger.
+The trigger needs to be useful – beyond the first simple one that you had in the PPT lecture (where you change an entry from “IN” to “Indiana,” for example). What event do you need a trigger to react to in your database?
+
+DELIMITER $$
+CREATE TRIGGER fired
+AFTER DELETE ON employee
+FOR EACH ROW
+BEGIN
+INSERT INTO ex_employee
+SET
+employee_id=OLD.employee_id,
+level_id=OLD.wlevel_id,
+first_name=OLD.first_name,
+last_name=OLD.last_name,
+supervisor=OLD.supervisor,
+change_date= NOW();
+END $$
+DELIMITER;
+
+
+	This trigger inserts data into the ex_employee table when an employee is deleted from the employee table. This could be for a number of reasons including a lay off or firing, but it helps the organization to keep track 
+of who past employees are. It also keeps track of when the change was made. 
+
+
+Explain in a few sentences why you made this particular query.
+
+Make two (2) queries that join two or more tables.
+
+SELECT food.cost_per_lb, food.food_name, feeding.amount, animal.animal_type_id 
+FROM food 
+JOIN feeding 
+ON (food.food_id = feeding.food_id) 
+JOIN animal 
+ON (feeding.animal_type_id = animal.animal_type_id)
+
+	I made this query because I wanted to see the costs of all the foods next to which animal consumes that food. The reason I took food name rather than food_id was because I wanted to better analyze the cost of the goods without
+having to remember what food went with what ID. This query is also nice because it includes the amount of food in a serving creating an even better environment for analysis. 
+
+SELECT employee.first_name, employee.last_name, shift.clock_in, shift.clock_out
+FROM employee 
+JOIN shift 
+ON (employee.employee_id = shift.employee_id) 
+JOIN location ON (location.location_id = shift.location_id) 
+WHERE location.location_name="Rainforest";
+
+	This query was made to show everyone who worked/works in the rainforest location. This query is especially useful because it contains a lot of information
+including the full name of the employees and when they clocked in and out. Originally I also had the location name in the SELECT statement
+but I took it out because I thought it was redundant. 
+
+
+Make two (2) queries, each using a different aggregation function from this list: MAX, MIN, AVG, COUNT, and SUM.
+
+SELECT COUNT(animal_id) 
+FROM animal
+
+	Although very simple, this query is extremely useful and important to the zoo admins. Obviously, when one is running a zoo, he or she will want to keep track
+of exactly how many animals there are. This view accomplishes that by counting the unique animal_id's, which is all of them by the way. 
+
+SELECT AVG(supervisor)
+FROM employee
+
+	This query is also rather simple but it's actually really cool! Since supervisor is a binary attribute, by taking the average of it we see the percentage of total employees that supervisors make up.
+This could be an interesting statistic to a zoo admin since one would think that the ratio between supervisor and employee would be an important detail.  
+
+Make one (1) query using one of the following in a predicate: OR, AND
+Make one (1) query using one of the following in a predicate: BETWEEN, IN, LIKE
+***Both questions above are answered in the sql statement below
+
+SELECT employee.first_name, employee.last_name, shift.clock_in, shift.clock_out, location.location_name 
+FROM employee 
+JOIN shift 
+ON (employee.employee_id = shift.employee_id) 
+JOIN location ON (location.location_id = shift.location_id)
+WHERE shift.location_id=1
+AND shift.clock_in AND shift.clock_out BETWEEN "2019-11-17 00:00:00" AND "2019-11-17 02:01:00"
+
+	I created this query to fulfill my earliest plans with my database. Originally, my main goal, and what really inspired me to do this project
+was that I wanted to create a database that could tell me exactly who was working where at what time. This could be incredibly useful to a zoo admin
+if an incident were to occur and the administrator wanted to investigate who was responsible or who should have been able to stop the incident from happening.
+
+
+Make one (1) query using  one of the following: DISTINCT, LIMIT
+
+SELECT DISTINCT animal.animal_type_id, animal_reference.animal_type
+FROM animal
+JOIN animal_reference
+ON(animal.animal_type_id=animal_reference.animal_type_id)
+
+This query was made for a very practical purpose. One of the main questions when one thinks of going to a zoo is what animals do they have? This query gives you the answer
+without a ton of extra information.
+
+Make two (2) useful queries of your own -- and explain briefly why you created them.
+
+SELECT first_name, last_name
+FROM ex_employee 
+WHERE supervisor=1
+
+I made this query to show off the ex_employee table and because as the ex_employee table grows it would make sense that an admin may want to see
+just the supervisors that have left the organization since often companies invest much more into their supervisors than regular employees.
+
+SELECT DISTINCT animal_reference.animal_type, location.location_name
+FROM animal_reference
+JOIN animal
+ON (animal_reference.animal_type_id=animal.animal_type_id)
+JOIN location
+ON (animal.location_id=location.location_id)
+
+	I created this query because I realized that nowhere in this assignment had I put the animal types next to their physical location in the zoo. I like this query
+because it provides useful information on where types of animals are located without any redundancy.
+
+
+	 
+
+
+
