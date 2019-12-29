@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+
+}
+
+html, body {
+    height: 100%;
+
+}
+
+body {
+    text-align: center;
+
+
+}
+
+/*reset padding for p and hx tags*/
+p {
+    padding: 0 0 1em;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0 0 0.4em;
+
+}
+
+hr {
+    margin-bottom: 3px;
+    background-color: #bbb;
+    color: #bbb;
+    height: 1px;
+    border: 0px;
+    clear: both;
+}
+
+img {
+    margin-top: 30px;
+    border-style: solid;
+    border-color: #005cbf;
+    background-color: #005cbf;
+    width: 300px;
+    height: 350px;
+
+}
+
+#footer {
+    border-style: inset;
+    border-color: black;
+}
+
+#left {
+
+    height: 72px;
+    background-image: url("http://localhost/I211/FinalProject/www/img/style/blueskate.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 150%;
+    width: 76px;
+    margin-bottom: 50px;
+    margin-top: 0px;
+
+
+
+
+
+
+
+}
+
+#pics:hover {
+    width: 350px;
+    height: 400px;
+}
+
+.grid-container {
+margin: 0 auto;
+
+}
+.row{
+
+    background-color: rgba(36,39,41,1);
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 0px;
+    background-size: auto;
+    image-rendering: optimizeQuality;
+    column-count: 3;
+    color: rgba(236,236,236,1)
+
+
+}
+#midfloat{
+
+}
+
+#banner{
+
+    padding: 60px;
+    text-align: center;
+    background-image: url("http://localhost/I211/FinalProject/www/img/style/header.jpg");
+    color: white;
+    font-size: 30px;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-style: inset;
+    border-color: black;
+    image-rendering: optimizeQuality;
+
+
+}
+@keyframes ourBoards {
+
+    0% {color: #ffd3cc;}
+    11% {color: #ff2400;}
+    22% {color: #e81d1d;}
+    33% {color: #e8b71d;}
+    44% {color: #e3e81d;}
+    55% {color: #1de840;}
+    66% {color: #1ddde8;}
+    77% {color: #2b1de8;}
+    88% {color: #dd00f3;}
+    100% {color: #f27a66;}
+
+
+}
+#wrapper {
+    background-image: linear-gradient(  #e63468,rgba(236,236,236,1));
+    background-repeat: no-repeat;
+}
+#right{
+    margin-bottom: 76px;
+}
+
+#suggestionDiv {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    right: -1px;
+    background-color: #fff;
+    font-size: 0.85em;
+    z-index: 9999;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 2px 10px 12px 2px rgba(0,0,0,.175);
+}
+
+#suggestionDiv span {
+    display: block;
+    padding: 4px 3px 4px 10px;
+    cursor: default;
+    min-width: 178px;
+    white-space: nowrap;
+}
+
+#suggestionDiv span:hover {
+    background-color: #F5DEB3;
+}
+
+
+
+
+
+
+
