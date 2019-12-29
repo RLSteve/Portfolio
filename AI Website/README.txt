@@ -29,3 +29,5 @@ Credits:
 		jQuery (jquery.com)
 		Misc. Sass functions (@HugoGiraudel)
 		Skel (skel.io)
+-----------------------------------------------------------------------------------------------------------------------------------
+This was my first informatics project. With virtually no direction I was told to make a website. I decided to make a single page informative website about the past present and future of AI in the medical field. I obviously used a bootstrap but this project goes to show my determination to get whatever I need done, well... done. I made this with virtually no-clue as to what I was doing and things just worked out. Wasn't easy but man I was proud. 
